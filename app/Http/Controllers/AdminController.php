@@ -23,7 +23,5 @@ class AdminController extends Controller
     }
 
     public static function searchlike(Request $req){
-        //eiei
     }
 }
-
