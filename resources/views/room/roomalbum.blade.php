@@ -125,16 +125,19 @@
                                 <div class="card-body scrollable">
                                     <p class="card-title fw-bold">{{ $room->roomName }}</p>
                                     <div class="card-text">
-
-                                        @foreach ($bookingList as $booking)
+                                     
+                                            @foreach ($bookingList as $booking)
                                             @foreach ($booking as $bb)
                                                 @if ($bb->roomId == $room->roomId)
-                                                    <p class="text-decoration-underline">{{ $bb->bookingAgenda }}</p>
-                                                    <p>{{ $bb->bookingTimeStart . '-' . $bb->bookingTimeFinish }}</p>
-                                                    <p>{{ $bb->firstName . ' ' . $bb->lastName }}</p>
+                                                    {{-- <p class="text-decoration-underline">{{ $bb->bookingAgenda }}</p> --}}
+                                                    <p>{{ $bb->bookingAgenda }}</p>
+                                                    <p class="card-text">{{ $bb->bookingTimeStart . '-' . $bb->bookingTimeFinish }}</p>
+                                                    <p class="card-text">{{ $bb->firstName . ' ' . $bb->lastName }}</p>
                                                 @endif
                                             @endforeach
                                         @endforeach
+                                    
+                                        
                                     </div>
 
 

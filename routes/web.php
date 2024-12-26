@@ -42,7 +42,10 @@ Route::group(['middleware'=>'guest'],function(){
 
     // Route::get('/',[RoomController::class,'getAllroomAlbum']);
     Route::get('/',[BookingController::class,'showfirstpage']);
-
+    Route::get('/setting',function(){
+        return view('auth.setting');
+    });
+   
 
 });
 

@@ -41,7 +41,7 @@
         </li>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/user/dashbord">
+            <a class="nav-link" href="/setting">
               <i class="mdi mdi-settings menu-icon"></i>
               <span class="menu-title">ตั้งค่า</span>
               {{-- <div class="badge badge-info badge-pill">2</div> --}}
