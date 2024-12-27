@@ -11,7 +11,7 @@
                     จองห้องประชุม {{$room->roomName}}
                 </p>
                 @if (session('message'))
-                {{-- <h6 class="font-weight-bold text-danger">{{session('message')}}</h6> --}}
+                <h6 class="font-weight-bold text-danger">{{session('message')}}</h6>
                 @endif
                 <form class="forms-sample"  action="/booking/addbooking" method="post" >
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -28,13 +28,7 @@
                         <input type="date" class="form-control" id="roomnameInput" name="bookingDate" required>
                     </div>
                     <div class="form-group">
-                        {{-- <h5 class="font-weight-bold text-danger">{{session('message')}}</h5> --}}
-                        {{-- <label for="time ">{{session('message')}}เวลาที่ใช้ห้อง</label> --}}
-                        <label for="time">
-                            <span style="color: red;">{{ session('message') }}</span> เวลาที่ใช้ห้อง
-                        </label>
-                        
-                        
+                        <label for="time">เวลาที่ใช้ห้อง</label>
                         <div class="row" id="time">
                             <div class="col-sm-6">
                                 <label for="timestart">เวลาเริ่ม</label>
@@ -79,7 +73,7 @@
                                 <th style="text-align: center">ลำดับที่</th>
                                 <th style="text-align: center">หัวข้อการประชุม</th>
                                 <th style="text-align: center">วันที่ใช้งาน</th>
-                                <th style="text-align: center">เวลาที่จอง</th>
+                                <th style="text-align: center">เวลา</th>
                                 <th style="text-align: center">เวลาเริ่ม</th>
                                 <th style="text-align: center">เวลาสิ้นสุด</th>
                                 <th style="text-align: center">ผู้จอง</th>

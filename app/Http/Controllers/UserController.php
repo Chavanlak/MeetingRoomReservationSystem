@@ -52,4 +52,5 @@ class UserController extends Controller
         $count = BookingRepository::countUserBookingSearch(Auth::user()->userId,$roomName, $limit);
         return view('dashbord/userdashbord',compact('bookingList','offset','limit', 'stringPage','count'));
     }
+   
 }

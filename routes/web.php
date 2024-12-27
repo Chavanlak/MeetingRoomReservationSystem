@@ -42,10 +42,13 @@ Route::group(['middleware'=>'guest'],function(){
 
     // Route::get('/',[RoomController::class,'getAllroomAlbum']);
     Route::get('/',[BookingController::class,'showfirstpage']);
-    Route::get('/setting',function(){
-        return view('auth.setting');
-    });
-   
+//     Route::get('/changepassword',function(){
+//         return view ('auth.changepassword');
+//     }
+        
+// );
+  
+
 
 });
 
@@ -57,8 +60,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/logout',[AuthController::class,'logout']);
     Route::get('/bookingedit/{bookingId}',[BookingController::class,'updateBookingbyId']);
     Route::post('/bookingupdate',[BookingController::class,'editBookingbyId']);
-
-
+    Route::get('/setting',[AuthController::class,'settingpassword']);
+    Route::post('/updatepassword',[AuthController::class,'updatepassword']);
 });
 
 Route::group(['prefix'=>'user','middleware'=>'isUser'], function(){

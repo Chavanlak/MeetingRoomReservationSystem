@@ -17,9 +17,11 @@
             /* เพิ่มพื้นที่ภายใน */
             max-width: 950px;
             /* กำหนดความกว้างสูงสุด */
-            margin: auto; จัดให้อยู่กึ่งกลาง
+            margin: auto;
+            จัดให้อยู่กึ่งกลาง
             height: 200px;
             width: 100%;
+        
         }
 
         .content-wrapper {
@@ -69,7 +71,7 @@
                             <form class="pt-3" action="/loginpost" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail">อีเมล์</label>
+                                    <label for="exampleInputEmail">อีเมล</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
@@ -77,7 +79,7 @@
                                             </span>
                                         </div>
                                         <input type="email" class="form-control form-control-lg border-left-0"
-                                            id="exampleInputEmail" placeholder="อีเมล์" name="email">
+                                            id="exampleInputEmail" placeholder="อีเมล" name="email">
                                     </div>
                                 </div>
                                 <div class="form-group">

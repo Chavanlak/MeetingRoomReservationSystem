@@ -54,14 +54,14 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="roomId" value="{{$roomId}}">
                         <div class="form-group">
-                            <label for="exampleInputEmail">อีเมล์</label>
+                            <label for="exampleInputEmail">อีเมล</label>
                             <div class="input-group">
                                 <div class="input-group-prepend bg-transparent">
                                 <span class="input-group-text bg-transparent border-right-0">
                                     <i class="mdi mdi-account-outline text-primary"></i>
                                 </span>
                                 </div>
-                                <input type="email" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="อีเมล์" name="email">
+                                <input type="email" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="อีเมล" name="email">
                             </div>
                         </div>
                         <div class="form-group">
@@ -72,8 +72,14 @@
                                     <i class="mdi mdi-lock-outline text-primary"></i>
                                 </span>
                                 </div>
-                                <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="รหัสผ่าน" name="password">
+                                <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="รหัสผ่าน" name="password"maxlength="6" minlength="6"
+                                required
+                                pattern = "(?=.*\d)(?=.* [a-z])(?=.* [A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{4,}">
                             </div>
+                        </div>
+                        <div class="my-2">
+                            {{-- <a href="#" class="auth-link text-black">Forgot password?</a> --}}
+                            {{-- <a href="/changepassword" class="md-3 text-right mt-4 font-weight-light">Forgot password?</a> --}}
                         </div>
                         <div class="my-2 d-flex justify-content-between align-items-center">
                             <div class="form-check">
@@ -82,10 +88,16 @@
                                     {{-- Keep me signed in --}}
                                 </label>
                             </div>
-                            {{-- <a href="#" class="auth-link text-black">Forgot password?</a> --}}
+                            {{-- <a href="#" class="md-3 auth-link text-black">Forgot password?</a> --}}
+                       
+
                         </div>
                         <div class="my-3">
                             <input type="submit" value="ลงชื่อเข้าใช้" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"/>
+                        </div>
+                        {{-- <div class="md-3 text-right mt-4 font-weight-light"> --}}
+                            <div class="md-3 text-right mt-4 font-weight-light">
+                            Already have an account? <a href="/register" class="text-primary">Register</a>
                         </div>
                         {{-- <div class="text-center mt-4 font-weight-light">
                             Don't have an account? <a href="register-2.html" class="text-primary">Create</a>

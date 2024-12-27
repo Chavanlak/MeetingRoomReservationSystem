@@ -86,6 +86,15 @@
             max-height: 200px;
             min-height: 200px;
         }
+
+        .bg-custom-1 {
+            background-color: #fdfefe ;
+            /* Light Coral */
+        }
+        .bg-custom-2 {
+            background-color: #e3e6e6 ;
+            /* Light Coral */
+        }
     </style>
 
 
@@ -101,7 +110,8 @@
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light">ระบบจองห้องประชุม</h1>
-                    <p class="lead text-muted">กรุณาเลือกห้องที่ต้องการจอง หรือกลับไปดูหน้าการจองของฉัน <a href="/home">click</a></p>
+                    <p class="lead text-muted">กรุณาเลือกห้องที่ต้องการจอง หรือกลับไปดูหน้าการจองของฉัน <a
+                            href="/home">click</a></p>
                 </div>
             </div>
         </section>
@@ -112,33 +122,58 @@
                     @foreach ($roomList as $room)
                         <div class="col">
                             <div class="card shadow-sm">
-                                @if($room->roomName == "Meeting Room1")
-                                <img src="{{asset('picture/meeting1.jpg')}}" alt="">
-                            @elseif($room->roomName == "Meeting Room2")
-                                <img src="{{asset('picture/meeting2.jpg')}}" alt="">
-                            @else
-                                <img src="{{asset('picture/meeting3.jpg')}}" alt="">
-                            @endif
+                                @if ($room->roomName == 'Meeting Room1')
+                                    <img src="{{ asset('picture/meeting1.jpg') }}" alt="">
+                                @elseif($room->roomName == 'Meeting Room2')
+                                    <img src="{{ asset('picture/meeting2.jpg') }}" alt="">
+                                @else
+                                    <img src="{{ asset('picture/meeting3.jpg') }}" alt="">
+                                @endif
 
-                               
-                                
+
+
                                 <div class="card-body scrollable">
                                     <p class="card-title fw-bold">{{ $room->roomName }}</p>
-                                    <div class="card-text">
-                                     
-                                            @foreach ($bookingList as $booking)
-                                            @foreach ($booking as $bb)
-                                                @if ($bb->roomId == $room->roomId)
-                                                    {{-- <p class="text-decoration-underline">{{ $bb->bookingAgenda }}</p> --}}
-                                                    <p>{{ $bb->bookingAgenda }}</p>
-                                                    <p class="card-text">{{ $bb->bookingTimeStart . '-' . $bb->bookingTimeFinish }}</p>
-                                                    <p class="card-text">{{ $bb->firstName . ' ' . $bb->lastName }}</p>
-                                                @endif
-                                            @endforeach
+                                    @php
+                                        // Define an array of colors for bookings
+                                        $colors = [
+                                            'bg-custom-1',
+                                            // 'bg-light',
+                                            // 'bg-success',
+                                            // 'bg-danger',
+                                            // 'bg-warning',
+                                            // 'bg-info',
+                                        ];
+                                        $colorIndex = 0;
+                                    @endphp
+
+                                    {{-- <div class="card-text"> --}}
+
+                                    @foreach ($bookingList as $booking)
+                                        @foreach ($booking as $bb)
+                                            @if ($bb->roomId == $room->roomId)
+                                                @php
+                                                    // Assign a color and cycle through the array
+                                                    $currentColor = $colors[$colorIndex % count($colors)];
+                                                    $colorIndex++;
+                                                @endphp
+                                                <div class="card text-dark {{ $currentColor }} mb-3"
+                                                    style="max-width: 18rem;">
+                                                    <div class="card-body">
+
+                                                        {{-- <p class="text-decoration-underline">{{ $bb->bookingAgenda }}</p> --}}
+                                                        {{-- <p>{{ $bb->bookingAgenda }}</p> --}}
+                                                        <p class="card bg-secondary text-white">
+                                                            {{ $bb->bookingTimeStart . ' - ' . $bb->bookingTimeFinish }}
+                                                        </p>
+                                                        <p>หัวข้อ : {{ $bb->bookingAgenda }}</p>
+                                                        <p>ผู้จอง : {{ $bb->firstName . ' ' . $bb->lastName }}</p>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         @endforeach
-                                    
-                                        
-                                    </div>
+                                    @endforeach
+
 
 
 

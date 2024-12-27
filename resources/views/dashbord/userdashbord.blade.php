@@ -33,7 +33,7 @@
                                     <th style="text-align: center">ลำดับ</th>
                                     <th style="text-align: center">หัวข้อการประชุม</th>
                                     <th style="text-align: center">วันที่ใช้งาน</th>
-                                    <th style="text-align: center">เวลาที่จอง</th>
+                                    <th style="text-align: center">เวลา</th>
                                     <th style="text-align: center">เวลาเริ่ม</th>
                                     <th style="text-align: center">เวลาสิ้นสุด</th>
                                     <th style="text-align: center">ผู้จอง</th>
