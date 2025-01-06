@@ -164,10 +164,14 @@
                                                         {{-- <p class="text-decoration-underline">{{ $bb->bookingAgenda }}</p> --}}
                                                         {{-- <p>{{ $bb->bookingAgenda }}</p> --}}
                                                         <p class="card bg-secondary text-white">
-                                                            {{ $bb->bookingTimeStart . ' - ' . $bb->bookingTimeFinish }}
+                                                            {{ $bb->bookingTimeStart . ' - ' . $bb->bookingTimeFinish}}
                                                         </p>
                                                         <p>หัวข้อ : {{ $bb->bookingAgenda }}</p>
-                                                        <p>ผู้จอง : {{ $bb->firstName . ' ' . $bb->lastName }}</p>
+                                                        {{-- <p>ผู้จอง : {{ $bb->firstName . ' ' . $bb->lastName }}</p> --}}
+                                                        {{-- <p>ผู้จอง : {{ $bb->department }}&nbsp;&nbsp;&nbsp;&nbsp;{{ $bb->phone}}</p> --}}
+                                                        
+                                                        <p>ผู้จอง : {{ $bb->department }}&nbsp;&nbsp;&nbsp;&nbsp;{{ $bb->phone}}</p>
+
                                                     </div>
                                                 </div>
                                             @endif

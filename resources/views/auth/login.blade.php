@@ -64,22 +64,23 @@
                             </div>
                             <h4>ลงชื่อเข้าใช้</h4>
 
-                            @if (session('message'))
+                            {{-- @if (session('message'))
                                 <h6 class="font-weight-bold text-danger">{{ session('message') }}</h6>
-                            @endif
+                            @endif --}}
                             {{-- <h6 class="font-weight-light">Happy to see you again!</h6> --}}
                             <form class="pt-3" action="/loginpost" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail">อีเมล</label>
+                                    <label for="exampleInputUsername">รหัสพนักงาน</label>
+                                    {{-- <label for="exampleInputEmail">อีเมล</label> --}}
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
                                                 <i class="mdi mdi-account-outline text-primary"></i>
                                             </span>
                                         </div>
-                                        <input type="email" class="form-control form-control-lg border-left-0"
-                                            id="exampleInputEmail" placeholder="อีเมล" name="email">
+                                        <input type="username" class="form-control form-control-lg border-left-0"
+                                            id="exampleInputUsername" placeholder="รหัสพนักงาน" name="username">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -91,7 +92,9 @@
                                             </span>
                                         </div>
                                         <input type="password" class="form-control form-control-lg border-left-0"
-                                            id="exampleInputPassword" placeholder="รหัสผ่าน" name="password">
+                                            id="exampleInputPassword" placeholder="รหัสผ่าน" name="password"maxlength="6" minlength="6"
+                                            required
+                                            pattern = "(?=.*\d)(?=.* [a-z])(?=.* [A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{4,}">
                                     </div>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
@@ -106,9 +109,6 @@
                                 <div class="my-3">
                                     <input type="submit" value="ลงชื่อเข้าใช้"
                                         class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" />
-                                </div>
-                                <div class="md-3 text-right mt-4 font-weight-light">
-                                    Already have an account? <a href="/register" class="text-primary">Register</a>
                                 </div>
                                 {{-- <div class="text-center mt-4 font-weight-light">
                             Don't have an account? <a href="register-2.html" class="text-primary">Create</a>

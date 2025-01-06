@@ -11,13 +11,12 @@ use App\Models\User;
 
 class UserRepository{
 
-    public static function save($email, $password, $username, $firstName, $lastName, $userTypeId){
+    public static function save( $password, $username, $userTypeId, $department, $phone){
         $user = new User();
-        $user->email = $email;
-        $user->password = Hash::make($password);
         $user->username = $username;
-        $user->firstName = $firstName;
-        $user->lastName = $lastName;
+        $user->password = Hash::make($password);
+        $user->department = $department;
+        $user->phone = $phone;
         $user->userTypeId = $userTypeId;
         $user->save();
     }

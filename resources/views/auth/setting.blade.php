@@ -20,9 +20,9 @@
                                 <span class="text-danger">{{ $errors->first('old_password') }}</span>
                             @endif --}}
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="username">Username</label>
                             <input class="form-control form-control-lg border-left-0" type="text"
-                                value="{{ $email }}" disabled>
+                                value="{{ $username }}" disabled>
                         </div>
                         <div class= "form-group">
                             <label for="new_password" style="font-size:14px;">{{ 'New Password' }}</label>

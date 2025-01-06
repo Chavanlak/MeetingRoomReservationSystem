@@ -104,10 +104,17 @@ class BookingRepository
         return  $booking;
     }
 
+    // public static function getBookingDetailinCurrentDate($roomId){
+    //     // SELECT booking.bookingAgenda, booking.bookingDate, booking.bookingTimeStart, booking.bookingTimeFinish, booking.roomId, user.firstName, user.lastName FROM booking INNER JOIN user ON booking.userId = user.userId WHERE booking.bookingDate = CURRENT_DATE AND booking.roomId = 1 ORDER BY booking.bookingTimeStart ASC;
+    //     $bookingDetail = Booking::select(['booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimeStart', 'booking.bookingTimeFinish', 'booking.roomId',
+    //     'user.firstName', 'user.lastName'])->join('user','user.userId','=', 'booking.userId')
+    //     ->whereRaw('booking.bookingDate = CURRENT_DATE')->where('booking.roomId','=',$roomId)->orderBy('booking.bookingTimeStart','asc')->get();
+    //     return $bookingDetail;
+    // }
     public static function getBookingDetailinCurrentDate($roomId){
         // SELECT booking.bookingAgenda, booking.bookingDate, booking.bookingTimeStart, booking.bookingTimeFinish, booking.roomId, user.firstName, user.lastName FROM booking INNER JOIN user ON booking.userId = user.userId WHERE booking.bookingDate = CURRENT_DATE AND booking.roomId = 1 ORDER BY booking.bookingTimeStart ASC;
         $bookingDetail = Booking::select(['booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimeStart', 'booking.bookingTimeFinish', 'booking.roomId',
-        'user.firstName', 'user.lastName'])->join('user','user.userId','=', 'booking.userId')
+        'user.department', 'user.phone'])->join('user','user.userId','=', 'booking.userId')
         ->whereRaw('booking.bookingDate = CURRENT_DATE')->where('booking.roomId','=',$roomId)->orderBy('booking.bookingTimeStart','asc')->get();
         return $bookingDetail;
     }
@@ -123,8 +130,8 @@ class BookingRepository
                 'booking.bookingTimeFinish',
                 'booking.userId',
                 DB::raw('DATE_FORMAT(booking.bookingDate, "%d/%m/%y") AS BookingDate'),
-                'user.firstName',
-                'user.lastName'
+                'user.department',
+                'user.phone'
             )
             ->where('booking.bookingDate', DB::raw('CURDATE()'))
             ->orderBy('booking.bookingTimeStart', 'asc')
@@ -144,7 +151,7 @@ class BookingRepository
         // J = $limit
 
         $k = ((int)$offset-1)*(int)$limit;
-        $bookingDat = Booking::select('booking.bookingId', 'booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimes', 'booking.bookingTimeStart', 'booking.bookingTimeFinish', DB::raw('concat(user.firstName," ",user.lastName) as userbookingName'), 'room.roomName')
+        $bookingDat = Booking::select('booking.bookingId', 'booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimes', 'booking.bookingTimeStart', 'booking.bookingTimeFinish', DB::raw('concat(user.department," ",user.phone) as userbookingName'), 'room.roomName')
         ->join('user','booking.userId','=','user.userId')
         ->join('room', 'booking.roomId','=','room.roomId')
         ->where('user.userId','=',$userId)
@@ -167,7 +174,7 @@ class BookingRepository
 
     public static function getUserBookingSearch($userId, $roomName, $limit=5,$offset=1){
         $k = ((int)$offset-1)*(int)$limit;
-        $bookingDat = Booking::select('booking.bookingId', 'booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimeStart', 'booking.bookingTimeFinish', DB::raw('concat(user.firstName," ",user.lastName) as userbookingName'), 'room.roomName')
+        $bookingDat = Booking::select('booking.bookingId', 'booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimeStart', 'booking.bookingTimeFinish', DB::raw('concat(user.department," ",user.phone) as userbookingName'), 'room.roomName')
         ->join('user','booking.userId','=','user.userId')
         ->join('room', 'booking.roomId','=','room.roomId')
         ->where('user.userId','=',$userId)
@@ -201,7 +208,7 @@ class BookingRepository
     // FOR ADMIN DASHBORD
     public static function getBookingAdmin($limit=5,$offset=1){
         $k = ((int)$offset-1)*(int)$limit;
-        $bookingDat = Booking::select('booking.bookingId', 'booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimeStart', 'booking.bookingTimeFinish', DB::raw('concat(user.firstName," ",user.lastName) as userbookingName'), 'room.roomName')
+        $bookingDat = Booking::select('booking.bookingId', 'booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimeStart', 'booking.bookingTimeFinish', DB::raw('concat(user.department," ",user.phone) as userbookingName'), 'room.roomName')
         ->join('user','booking.userId','=','user.userId')
         ->join('room', 'booking.roomId','=','room.roomId')
         ->orderBy('booking.bookingDate','desc')

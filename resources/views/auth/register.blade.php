@@ -60,29 +60,17 @@
                             <form class="pt-3" action="/registerpost" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 
-                                <!-- Email Field -->
-                                <div class="form-group">
-                                    <label>อีเมล</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend bg-transparent">
-                                            <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-email text-primary"></i>
-                                            </span>
-                                        </div>
-                                        <input type="email" class="form-control form-control-lg border-left-0" placeholder="Email" name="email">
-                                    </div>
-                                </div>
 
                                 <!-- Username Field -->
                                 <div class="form-group">
-                                    <label>ชื่อผู้ใช้</label>
+                                    <label>รหัสพนักงาน</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
                                                 <i class="mdi mdi-account text-primary"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control form-control-lg border-left-0" placeholder="Username" name="username">
+                                        <input type="text" class="form-control form-control-lg border-left-0" placeholder="รหัสพนักงาน" name="username">
                                     </div>
                                 </div>
 
@@ -95,35 +83,67 @@
                                                 <i class="mdi mdi-lock text-primary"></i>
                                             </span>
                                         </div>
-                                        <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password" name="password" maxlength="6" minlength="6" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{4,}">
+                                        <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="รหัสผ่าน" name="password" maxlength="6" minlength="6" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{4,}">
                                     </div>
                                 </div>
-
-                                <!-- First Name Field -->
                                 <div class="form-group">
-                                    <label>ชื่อ</label>
+                                    <label>เเผนก</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-text-shadow text-primary"></i>
+                                                <i class="mdi mdi-domain text-primary"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control form-control-lg border-left-0" placeholder="Firstname" name="firstName">
+                                        <input type="text" class="form-control form-control-lg border-left-0" placeholder="เเผนก" name="department">
                                     </div>
                                 </div>
-
-                                <!-- Last Name Field -->
-                                <div class="form-group">
-                                    <label>นามสกุล</label>
+                                {{-- <div class="form-group">
+                                    <label>เบอร์โทรติดต่อ</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
                                             <span class="input-group-text bg-transparent border-right-0">
-                                                <i class="mdi mdi-text-shadow text-primary"></i>
+                                                <i class="mdi mdi-phone text-primary"></i>
                                             </span>
                                         </div>
-                                        <input type="text" class="form-control form-control-lg border-left-0" placeholder="Lastname" name="lastName">
+                                        <input type="text" class="form-control form-control-lg border-left-0" placeholder="เบอร์โทรติดต่อ" name="phone">
+                                    </div>
+                                </div> --}}
+                                <div class="form-group">
+                                    <label>เบอร์โทรติดต่อ</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend bg-transparent">
+                                            <span class="input-group-text bg-transparent border-right-0">
+                                                <i class="mdi mdi-phone text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <input 
+                                            type="text" 
+                                            class="form-control form-control-lg border-left-0" 
+                                            placeholder="เบอร์โทรติดต่อ" 
+                                            name="phone" 
+                                            maxlength="11" 
+                                            oninput="formatPhone(this)" 
+                                            required
+                                        >
                                     </div>
                                 </div>
+                                
+                                <script>
+                                    function formatPhone(input) {
+                                        // Remove all non-numeric characters
+                                        let phone = input.value.replace(/\D/g, '');
+                                        
+                                        // Format as xxx-xxxxxxx
+                                        if (phone.length <= 3) {
+                                            input.value = phone;
+                                        } else if (phone.length <= 10) {
+                                            input.value = phone.substring(0, 3) + '-' + phone.substring(3);
+                                        } else {
+                                            input.value = phone.substring(0, 3) + '-' + phone.substring(3, 10);
+                                        }
+                                    }
+                                </script>
+                                
 
                                 <!-- User Type Selection -->
                                 <div class="form-group">

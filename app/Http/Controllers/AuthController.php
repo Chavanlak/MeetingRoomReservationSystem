@@ -26,14 +26,14 @@ class AuthController extends Controller
     public static function registerPost(Request $req)
     {
         // recive from save to db
-        $email = $req->email;
         $username = $req->username;
         $password = $req->password;
-        $firstName = $req->firstName;
-        $lastName = $req->lastName;
         $userTypeId = $req->userTypeId;
+        $department = $req->department;
+        $phone = $req->phone;
 
-        UserRepository::save($email, $password, $username, $firstName, $lastName, $userTypeId);
+        // UserRepository::save($email, $password, $username, $firstName, $lastName, $userTypeId);
+        UserRepository::save( $password,$username,  $userTypeId , $department, $phone);
 
         return redirect('/register');
     }
@@ -48,7 +48,7 @@ class AuthController extends Controller
     {
         // recive data to login
         $credetials = [
-            'email' => $req->email,
+            'username' => $req->username,
             'password' => $req->password,
         ];
 
@@ -70,7 +70,7 @@ class AuthController extends Controller
     {
         $roomId = $req->roomId;
         $credetials = [
-            'email' => $req->email,
+            'username' => $req->username,
             'password' => $req->password,
         ];
 
@@ -86,8 +86,9 @@ class AuthController extends Controller
 
     public static function home()
     {
-        $firstName = Auth::user()->firstName;
-        $lastName = Auth::user()->lastName;
+        $department = Auth::user()->department;
+        $phone = Auth::user()->phone;
+   
 
         // echo "Name is: ".$firstName." ".$lastName;
 
@@ -131,8 +132,9 @@ class AuthController extends Controller
         // return view('/setting',compact('user'));
     }
     public static function settingpassword() {
-        $email = Auth::user()->email;
-        return view('auth/setting',compact('email'));
+        // $email = Auth::user()->email;
+        $username = Auth::user()->username;
+        return view('auth/setting',compact('username'));
     }
      
 }
