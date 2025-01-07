@@ -10,9 +10,9 @@
                 <p class="card-description">
                     จองห้องประชุม {{$room->roomName}}
                 </p>
-                @if (session('message'))
+                {{-- @if (session('message'))
                 <h6 class="font-weight-bold text-danger">{{session('message')}}</h6>
-                @endif
+                @endif --}}
                 <form class="forms-sample"  action="/booking/addbooking" method="post" >
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
@@ -28,17 +28,32 @@
                         <input type="date" class="form-control" id="roomnameInput" name="bookingDate" required>
                     </div>
                     <div class="form-group">
-                        <label for="time">เวลาที่ใช้ห้อง</label>
-                        <div class="row" id="time">
-                            <div class="col-sm-6">
-                                <label for="timestart">เวลาเริ่ม</label>
-                                <input type="time" class="form-control" id="timestart" name="bookingTimeStart" required>
+                        @if (session('message'))
+                            <label for="time">เวลาที่ใช้ห้อง</label>
+                            <div class="row" id="time">
+                                <div class="col-sm-6">
+                                    <label for="timestart" class="text-danger">เวลาเริ่ม{{session('message')}}</label>
+                                    <input type="time" class="form-control" id="timestart" name="bookingTimeStart" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="timeend" class="text-danger">เวลาสิ้นสุด{{session('message')}}</label>
+                                    <input type="time" class="form-control"  id="timeend" name="bookingTimeFinish" required>
+                                </div>
                             </div>
-                            <div class="col-sm-6">
-                                <label for="timeend">เวลาสิ้นสุด</label>
-                                <input type="time" class="form-control" id="timeend" name="bookingTimeFinish" required>
+                        @else
+                            <label for="time">เวลาที่ใช้ห้อง</label>
+                            <div class="row" id="time">
+                                <div class="col-sm-6">
+                                    <label for="timestart">เวลาเริ่ม</label>
+                                    <input type="time" class="form-control" id="timestart" name="bookingTimeStart" required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="timeend">เวลาสิ้นสุด</label>
+                                    <input type="time" class="form-control" id="timeend" name="bookingTimeFinish" required>
+                                </div>
                             </div>
-                        </div>
+                        @endif
+
 
                     </div>
                     {{-- userid => 1 --}}
@@ -97,7 +112,7 @@
                                 <td style="text-align: center">
                                     {{ $booking->user->department }}&nbsp;&nbsp;&nbsp;{{ $booking->user->phone }}
                                 </td>
-                                
+
                                 {{-- <td style="text-align: center">{{$booking->user->department}}</td>
                                 <td style="text-align: center">{{$booking->user->phone}}</td> --}}
 
@@ -112,21 +127,21 @@
                                 </td>
                                 @else
                                 <td style="text-align: center;">
-                                    <a href="{{route('delete',$booking->bookingId)}}" 
-                                       class="btn btn-danger" 
+                                    <a href="{{route('delete',$booking->bookingId)}}"
+                                       class="btn btn-danger"
                                        {{-- style="margin-right: 30px"  --}}
                                         style="margin-right: 30px; width: 100px; height: 40px "
                                        onclick="return confirm('คุณต้องการลบการจอง {{$booking->bookingId}}หรือไม่')">
                                        ลบ
                                     </a>
-                                    <a href="/booking/editbooking/{{$booking->bookingId}}" 
+                                    <a href="/booking/editbooking/{{$booking->bookingId}}"
                                         class="btn btn-warning "
                                          style="width: 100px; height: 40px;"
                                         >
                                         แก้ไข</a>
-                                        
+
                                 </td>
-                                
+
                                 @endif
                                 @endif
 

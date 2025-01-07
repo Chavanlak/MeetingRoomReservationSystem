@@ -21,7 +21,7 @@
             จัดให้อยู่กึ่งกลาง
             height: 200px;
             width: 100%;
-        
+
         }
 
         .content-wrapper {
@@ -64,9 +64,14 @@
                             </div>
                             <h4>ลงชื่อเข้าใช้</h4>
 
-                            {{-- @if (session('message'))
+                            @if (session('message'))
                                 <h6 class="font-weight-bold text-danger">{{ session('message') }}</h6>
-                            @endif --}}
+                            @endif
+
+                            @if (session('messageok'))
+                                <h6 class="font-weight-bold text-success">{{ session('messageok') }}</h6>
+                            @endif
+
                             {{-- <h6 class="font-weight-light">Happy to see you again!</h6> --}}
                             <form class="pt-3" action="/loginpost" method="post">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -110,9 +115,9 @@
                                     <input type="submit" value="ลงชื่อเข้าใช้"
                                         class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" />
                                 </div>
-                                {{-- <div class="text-center mt-4 font-weight-light">
-                            Don't have an account? <a href="register-2.html" class="text-primary">Create</a>
-                        </div> --}}
+                                <div class="text-center mt-4 font-weight-light">
+                                        ลืมรหัสผ่าน? <a href="/forgotpassword" class="text-primary">เปลี่ยนรหัสผ่าน</a>
+                                </div>
                             </form>
                         </div>
                     </div>

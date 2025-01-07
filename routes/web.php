@@ -39,15 +39,19 @@ Route::group(['middleware'=>'guest'],function(){
     Route::get('/login/{roomId}',[AuthController::class,'loginRoomId']);
     Route::post('/loginpostroomid',[AuthController::class,'loginPostRoomId']);
 
+    Route::get('/forgotpassword',[AuthController::class,'changePassword']);
+    Route::post('/forgotpasswordpost',[AuthController::class,'changePasswordPost']);
+
+
+
 
     // Route::get('/',[RoomController::class,'getAllroomAlbum']);
     Route::get('/',[BookingController::class,'showfirstpage']);
 //     Route::get('/changepassword',function(){
 //         return view ('auth.changepassword');
 //     }
-        
+
 // );
-  
 
 
 });

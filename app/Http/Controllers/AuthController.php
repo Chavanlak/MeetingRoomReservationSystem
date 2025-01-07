@@ -88,7 +88,6 @@ class AuthController extends Controller
     {
         $department = Auth::user()->department;
         $phone = Auth::user()->phone;
-   
 
         // echo "Name is: ".$firstName." ".$lastName;
 
@@ -115,7 +114,7 @@ class AuthController extends Controller
                 // 'new_password' => 'required'
             // 'new_password' => 'required'
             // 'comfirm_password' => 'required'
-        'new_password' => 'required|confirmed', 
+        'new_password' => 'required|confirmed',
         'new_password_confirmation' => 'required'
 
         ]);
@@ -136,5 +135,18 @@ class AuthController extends Controller
         $username = Auth::user()->username;
         return view('auth/setting',compact('username'));
     }
-     
+
+
+    public static function changePassword(){
+        return view('auth/newpassword');
+    }
+
+    public static function changePasswordPost(Request $req){
+        User::where('username','=',$req->username)->update([
+            'password' => Hash::make($req->password)
+        ]);
+
+        return redirect('/login')->with('messageok', 'เปลี่ยนรหัสผ่านแล้วกรุณา login');
+    }
+
 }

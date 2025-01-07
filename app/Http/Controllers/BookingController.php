@@ -39,16 +39,19 @@ class BookingController extends Controller
         $bookingDurationMinutes = $bookingTimeFinish->diffInMinutes($bookingTimeStart);
 
         if ($dateSelect->lt($dateNow)) {
-            return redirect('/booking/' . $roomId)->with('message', 'ไม่สามารถจองย้อนหลังได้');
+            // return redirect('/booking/' . $roomId)->with('message', 'ไม่สามารถจองย้อนหลังได้');
+            return redirect('/booking/' . $roomId)->with('message', '*');
         }
 
 
         if ($bookingDurationMinutes < 60) {
-            return redirect('/booking/' . $roomId)->with('message', 'ต้องจองเวลาเท่ากับ 1 ชั่วโมงเท่านั้น');
+            // return redirect('/booking/' . $roomId)->with('message', 'ต้องจองเวลาเท่ากับ 1 ชั่วโมงเท่านั้น');
+            return redirect('/booking/' . $roomId)->with('message', '*');
         }
 
         if($bookingTimeFinish < $bookingTimeStart){
-            return redirect('/booking/' . $roomId)->with('message', 'กรอกเวลาผิดพลาด');
+            // return redirect('/booking/' . $roomId)->with('message', 'กรอกเวลาผิดพลาด');
+            return redirect('/booking/' . $roomId)->with('message', '*');
         }
 
         $bookingTimes = now();
@@ -151,21 +154,25 @@ class BookingController extends Controller
         $bookingDurationMinutes = $bookingTimeFinishCar->diffInMinutes($bookingTimeStartCar);
 
         if ($dateSelect->lt($dateNow)) {
-            return redirect('/booking/editbooking/'.$bookingId)->with('message', 'ไม่สามารถจองย้อนหลังได้');
+            // return redirect('/booking/editbooking/'.$bookingId)->with('message', 'ไม่สามารถจองย้อนหลังได้');
+            return redirect('/booking/editbooking/'.$bookingId)->with('message', '*');
         }
 
 
         if ($bookingDurationMinutes < 60) {
-            return redirect('/booking/editbooking/'.$bookingId)->with('message', 'ต้องจองเวลาเท่ากับ 1 ชั่วโมงเท่านั้น');
+            // return redirect('/booking/editbooking/'.$bookingId)->with('message', 'ต้องจองเวลาเท่ากับ 1 ชั่วโมงเท่านั้น');
+            return redirect('/booking/editbooking/'.$bookingId)->with('message', '*');
         }
 
         if($bookingTimeFinish < $bookingTimeStart){
-            return redirect('/booking/editbooking/'.$bookingId)->with('message', 'กรอกเวลาผิดพลาด');
+            // return redirect('/booking/editbooking/'.$bookingId)->with('message', 'กรอกเวลาผิดพลาด');
+            return redirect('/booking/editbooking/'.$bookingId)->with('message', '*');
         }
 
         $updateResult = BookingRepository::update($bookingId,$bookingAgenda,$bookingDate,$bookingTimeStart,$bookingTimeFinish,$roomId);
         if(!$updateResult){
-            return redirect('/booking/editbooking/'.$bookingId)->with('message','ไม่สามารถแก้ไขการจองได้เพราะทับเวลาคนอื่น');
+            // return redirect('/booking/editbooking/'.$bookingId)->with('message','ไม่สามารถแก้ไขการจองได้เพราะทับเวลาคนอื่น');
+            return redirect('/booking/editbooking/'.$bookingId)->with('message', '*');
         }
 
 

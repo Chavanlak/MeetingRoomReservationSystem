@@ -27,7 +27,7 @@ class BookingRoom
 
         // 2 go to login with roomId
         $roomId = $request->route('roomId');
-        return redirect('/login/'.$roomId)->with('message','เข้าสู่ระบบก่อนจองห้อง');
+        return redirect('/login/'.$roomId)->with('message','กรูณาเข้าสู่ระบบก่อนจองห้องประชุม');
 
 
 
