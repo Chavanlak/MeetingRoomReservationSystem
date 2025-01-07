@@ -83,7 +83,7 @@
                                                 <i class="mdi mdi-lock text-primary"></i>
                                             </span>
                                         </div>
-                                        <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="รหัสผ่าน" name="password" maxlength="6" minlength="6" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{4,}">
+                                        <input type="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="รหัสผ่าน" name="password" minlength="6" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{4,}">
                                     </div>
                                 </div>
                                 <div class="form-group">
