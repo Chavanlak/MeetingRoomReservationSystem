@@ -115,9 +115,9 @@
                                     <input type="submit" value="ลงชื่อเข้าใช้"
                                         class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" />
                                 </div>
-                                <div class="text-center mt-4 font-weight-light">
+                                {{-- <div class="text-center mt-4 font-weight-light">
                                         ลืมรหัสผ่าน? <a href="/forgotpassword" class="text-primary">เปลี่ยนรหัสผ่าน</a>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
                     </div>

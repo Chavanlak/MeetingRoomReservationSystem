@@ -88,11 +88,12 @@
         }
 
         .bg-custom-1 {
-            background-color: #fdfefe ;
+            background-color: #fdfefe;
             /* Light Coral */
         }
+
         .bg-custom-2 {
-            background-color: #e3e6e6 ;
+            background-color: #e3e6e6;
             /* Light Coral */
         }
     </style>
@@ -164,23 +165,21 @@
                                                         {{-- <p class="text-decoration-underline">{{ $bb->bookingAgenda }}</p> --}}
                                                         {{-- <p>{{ $bb->bookingAgenda }}</p> --}}
                                                         <p class="card bg-secondary text-white">
-                                                            {{ $bb->bookingTimeStart . ' - ' . $bb->bookingTimeFinish}}
+                                                            {{ $bb->bookingTimeStart . ' - ' . $bb->bookingTimeFinish }}
                                                         </p>
                                                         <p>หัวข้อ : {{ $bb->bookingAgenda }}</p>
                                                         {{-- <p>ผู้จอง : {{ $bb->firstName . ' ' . $bb->lastName }}</p> --}}
                                                         {{-- <p>ผู้จอง : {{ $bb->department }}&nbsp;&nbsp;&nbsp;&nbsp;{{ $bb->phone}}</p> --}}
-                                                        
-                                                        <p>ผู้จอง : {{ $bb->department }}&nbsp;&nbsp;&nbsp;&nbsp;{{ $bb->phone}}</p>
+
+                                                        <p>ผู้จอง :
+                                                            {{ $bb->department }}&nbsp;&nbsp;&nbsp;&nbsp;{{ $bb->phone }}
+                                                        </p>
 
                                                     </div>
                                                 </div>
                                             @endif
                                         @endforeach
                                     @endforeach
-
-
-
-
                                 </div>
                                 <div class="card-footer text-muted">
                                     <div class="d-flex justify-content-between align-items-center">
@@ -192,30 +191,31 @@
                                         @foreach ($bookingList as $booking)
                                             @foreach ($booking as $bb)
                                                 @if ($bb->roomId == $room->roomId)
-                                                    <small class="text-mute">reservation:{{ $booking->count() }}</small>
-                                                @break
+                                                    <small
+                                                        class="text-mute">reservation:{{ $booking->count() }}</small>
+                                                    @break
 
-                                                {{-- <small class="text-mute">{{"Reservation:"$bb->count()}}</small> --}}
-                                            @endif
+                                                    {{-- <small class="text-mute">{{"Reservation:"$bb->count()}}</small> --}}
+                                                @endif
+                                            @endforeach
                                         @endforeach
-                                    @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
-    </div>
 
-</main>
-
+    </main>
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
-</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+    </script>
 
 
 </body>

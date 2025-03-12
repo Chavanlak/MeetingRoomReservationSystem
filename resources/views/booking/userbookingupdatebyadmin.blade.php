@@ -6,14 +6,18 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <div class="card-title">เเก้ไขการจอง</div>
+                <div class="card-title">เเก้ไขการจองห้อง</div>
                 <p class="card-description">
                     เเก้ไขการจองห้องประชุม {{$room->roomName}}
                 </p>
                 @if (session('message'))
                 <h6 class="font-weight-bold text-danger">{{session('message')}}</h6>
                 @endif
-                <form class="forms-sample"  action="/bookingupdate" method="post" >
+
+                @if (session('success'))
+                <h6 class="font-weight-bold text-success">{{session('success')}}</h6>
+                @endif
+                <form class="forms-sample"  action="/admin/updatebooking" method="post" >
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label for="roomnameInput">ชื่อห้องประชุม</label>

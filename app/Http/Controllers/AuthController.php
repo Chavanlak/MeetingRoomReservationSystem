@@ -21,6 +21,7 @@ class AuthController extends Controller
         // render register from
         $usertypes = UsertypeRepository::getAllUsertype();
         return view('auth/register', compact('usertypes'));
+    
     }
 
     public static function registerPost(Request $req)
@@ -34,7 +35,6 @@ class AuthController extends Controller
 
         // UserRepository::save($email, $password, $username, $firstName, $lastName, $userTypeId);
         UserRepository::save( $password,$username,  $userTypeId , $department, $phone);
-
         return redirect('/register');
     }
 

@@ -41,7 +41,11 @@ class BookingRepository
             $booking->bookingTimeFinish = $bookingTimeFinish;
             $booking->userId = $userId;
             $booking->roomId= $roomId;
-            $booking->bookingTimes = now();
+            $booking->bookingTimes = Carbon::now()->format('H:i:s'); // บันทึกเวลาปัจจุบัน
+            $booking->date = Carbon::now()->toDateString(); // บันทึกวันที่ปัจจุบัน
+            // $booking->bookingTimes = now();
+            // $booking->date = now();
+            // $booking->date = Carbon::now()->toDateString(); // ใช้คอลัมน์ date ที่มีอยู่แล้ว
             return $booking->save();
         }
         return false;
@@ -164,7 +168,7 @@ class BookingRepository
 
         $bookingList = [];
         foreach($bookingDat as $dat){
-            $bookingList[] = new BookingDTO($dat->bookingId, $dat->bookingAgenda, $dat->bookingDate, $dat->bookingTimes, $dat->bookingTimeStart, $dat->bookingTimeFinish, $dat->userbookingName, $dat->roomName);
+            $bookingList[] = new BookingDTO($dat->bookingId, $dat->bookingAgenda, $dat->bookingDate, $dat->bookingTimes, $dat->bookingTimeStart, $dat->bookingTimeFinish, $dat->date,$dat->userbookingName, $dat->roomName);
         }
 
 
@@ -184,9 +188,10 @@ class BookingRepository
         ->limit($limit)
         ->offset($k)
         ->get();
+        // dd($bookingDat);
         $bookingList = [];
         foreach($bookingDat as $dat){
-            $bookingList[] = new BookingDTO($dat->bookingId, $dat->bookingAgenda, $dat->bookingDate, $dat->bookingTimeStart, $dat->bookingTimeFinish, $dat->userbookingName, $dat->roomName,$dat->bookingTimes);
+            $bookingList[] = new BookingDTO($dat->bookingId, $dat->bookingAgenda, $dat->bookingDate, $dat->bookingTimeStart, $dat->bookingTimeFinish, $dat->userbookingName,$dat->date, $dat->roomName,$dat->bookingTimes);
         }
         return $bookingList;
     }
@@ -218,7 +223,7 @@ class BookingRepository
         ->get();
         $bookingList = [];
         foreach($bookingDat as $dat){
-            $bookingList[] = new BookingDTO($dat->bookingId, $dat->bookingAgenda, $dat->bookingDate, $dat->bookingTimeStart, $dat->bookingTimeFinish, $dat->userbookingName, $dat->roomName,$dat->bookingTimes);
+            $bookingList[] = new BookingDTO($dat->bookingId, $dat->bookingAgenda, $dat->bookingDate, $dat->bookingTimes,$dat->bookingTimeStart, $dat->bookingTimeFinish,$dat->date, $dat->userbookingName, $dat->roomName);
         }
 
 

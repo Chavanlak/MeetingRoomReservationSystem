@@ -53,7 +53,7 @@ class BookingController extends Controller
             // return redirect('/booking/' . $roomId)->with('message', 'กรอกเวลาผิดพลาด');
             return redirect('/booking/' . $roomId)->with('message', '*');
         }
-
+        $date = now();
         $bookingTimes = now();
         $result = BookingRepository::addBooking(
             $bookingAgenda,
@@ -71,16 +71,18 @@ class BookingController extends Controller
             return redirect('/user/dashbord')->with('message', 'จองสำเร็จ');
         }
 
-        return redirect('/booking/' . $roomId)->with('message', 'ไม่สามารถจองได้เพราะทับเวลาคนอื่น');
+        // return redirect('/booking/' . $roomId)->with('message', 'ไม่สามารถจองได้เพราะทับเวลาคนอื่น');
+        return redirect('/booking/' . $roomId)->with('message', '*');
     }
 
-
+//route auth
     public static function updateBookingbyId($bookingId){
         $booking = BookingRepository::getBookingbyId($bookingId);
         $room = RoomRepository::getRoomById($booking->roomId);
         return view('booking/bookingupdate',compact('booking','room'));
 
     }
+  //route auth
     public static function editBookingbyId(Request $req){
         $bookingId = $req->bookingId;
         $bookingAgenda = $req->bookingAgenda;
@@ -90,6 +92,7 @@ class BookingController extends Controller
         $bookingTimeStart = $req->bookingTimeStart ;
         $bookingTimeFinish = $req->bookingTimeFinish;
         $roomId = $req->roomId;
+        
 
         $dateNow = Carbon::now();
         $dateSelect = Carbon::parse($bookingDate." ".$bookingTimeStart);
@@ -132,7 +135,8 @@ class BookingController extends Controller
 
 // new controller for booking method
 
-    // update for user
+    // update for user 
+  
     public static function editbookingWithId($bookingId){
         $booking = BookingRepository::getBookingbyId($bookingId);
         $room = RoomRepository::getRoomById($booking->roomId);
@@ -179,46 +183,60 @@ class BookingController extends Controller
         return redirect('/booking/editbooking/'.$bookingId)->with('success','แก้ไขการจองเรียบร้อย');
     }
     // update for admin
-    public static function admineditbookingWithId($bookingId){
-        $booking = BookingRepository::getBookingbyId($bookingId);
-        $room = RoomRepository::getRoomById($booking->roomId);
-        return view('booking/adminbookingupdate',compact('booking','room'));
-    }
 
-    public static function adminupdateBookingWithId(Request $req){
-        $bookingId = $req->bookingId;
-        $bookingAgenda = $req->bookingAgenda;
-        $bookingDate = $req->bookingDate;
-        $bookingTimeStartCar = Carbon::parse($req->bookingTimeStart);
-        $bookingTimeFinishCar = Carbon::parse($req->bookingTimeFinish);
-        $bookingTimeStart = $req->bookingTimeStart ;
-        $bookingTimeFinish = $req->bookingTimeFinish;
-        $roomId = $req->roomId;
+    // public static function updateBookingbyIdbyAdmin($bookingId){
+    //     $booking = BookingRepository::getBookingbyId($bookingId);
+    //     $room = RoomRepository::getRoomById($booking->roomId);
+    //     return view('booking/bookingupdatebyadmin',compact('booking','room'));
 
-        $dateNow = Carbon::now();
-        $dateSelect = Carbon::parse($bookingDate." ".$bookingTimeStart);
-        $bookingDurationMinutes = $bookingTimeFinishCar->diffInMinutes($bookingTimeStartCar);
+    // }
+    // public static function admineditbookingWithId($bookingId){
+    //     $booking = BookingRepository::getBookingbyId($bookingId);
+    //     $room = RoomRepository::getRoomById($booking->roomId);
+    //     return view('booking/adminbookingupdate',compact('booking','room'));
+    // }
 
-        if ($dateSelect->lt($dateNow)) {
-            return redirect('/admin/editbooking/'.$bookingId)->with('message', 'ไม่สามารถจองย้อนหลังได้');
-        }
+    // public static function adminupdateBookingWithId(Request $req){
+    //     $bookingId = $req->bookingId;
+    //     $bookingAgenda = $req->bookingAgenda;
+    //     $bookingDate = $req->bookingDate;
+    //     $bookingTimeStartCar = Carbon::parse($req->bookingTimeStart);
+    //     $bookingTimeFinishCar = Carbon::parse($req->bookingTimeFinish);
+    //     $bookingTimeStart = $req->bookingTimeStart ;
+    //     $bookingTimeFinish = $req->bookingTimeFinish;
+    //     $roomId = $req->roomId;
 
+    //     $dateNow = Carbon::now();
+    //     $dateSelect = Carbon::parse($bookingDate." ".$bookingTimeStart);
+    //     $bookingDurationMinutes = $bookingTimeFinishCar->diffInMinutes($bookingTimeStartCar);
 
-        if ($bookingDurationMinutes < 60) {
-            return redirect('/admin/editbooking/'.$bookingId)->with('message', 'ต้องจองเวลาเท่ากับ 1 ชั่วโมงเท่านั้น');
-        }
-
-        if($bookingTimeFinish < $bookingTimeStart){
-            return redirect('/admin/editbooking/'.$bookingId)->with('message', 'กรอกเวลาผิดพลาด');
-        }
+    //     if ($dateSelect->lt($dateNow)) {
+    //         return redirect('/admin/editbooking/'.$bookingId)->with('message', 'ไม่สามารถจองย้อนหลังได้');
+    //     }
 
 
-        $updateResult = BookingRepository::update($bookingId,$bookingAgenda,$bookingDate,$bookingTimeStart,$bookingTimeFinish,$roomId);
-        if(!$updateResult){
-            return redirect('/admin/editbooking/'.$bookingId)->with('message','ไม่สามารถแก้ไขการจองได้เพราะทับเวลาคนอื่น');
-        }
-        return redirect('/admin/editbooking/'.$bookingId)->with('success','แก้ไขการจองเรียบร้อย');
-    }
+    //     if ($bookingDurationMinutes < 60) {
+    //         return redirect('/admin/editbooking/'.$bookingId)->with('message', 'ต้องจองเวลาเท่ากับ 1 ชั่วโมงเท่านั้น');
+    //     }
+
+    //     if($bookingTimeFinish < $bookingTimeStart){
+    //         return redirect('/admin/editbooking/'.$bookingId)->with('message', 'กรอกเวลาผิดพลาด');
+    //     }
+
+
+    //     $updateResult = BookingRepository::update($bookingId,$bookingAgenda,$bookingDate,$bookingTimeStart,$bookingTimeFinish,$roomId);
+    //     if(!$updateResult){
+    //         return redirect('/admin/editbooking/'.$bookingId)->with('message','ไม่สามารถแก้ไขการจองได้เพราะทับเวลาคนอื่น');
+    //     }
+    //     return redirect('/admin/editbooking/'.$bookingId)->with('success','แก้ไขการจองเรียบร้อย');
+    // }
+
+    // public static function adminupdateBookingWithId($bookingId){
+    //     $booking = BookingRepository::getBookingbyId($bookingId);
+    //     $room = RoomRepository::getRoomById($booking->roomId);
+    //     return view('booking/bookingupdate',compact('booking','room'));
+
+    // }
     // add new
 
 

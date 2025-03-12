@@ -51,9 +51,6 @@
                     <input value="update password" type="submit" class="my-3 btn btn-primary"
                     onclick="return confirm('คุณต้องการเปลี่ยนรหัสผ่าน {{new_password}}หรือไม่')">
                     เปลี่ยน
-
-
-
                 </div>
                 <div class="card-footer">
 

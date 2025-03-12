@@ -97,7 +97,7 @@
                                         <input type="text" class="form-control form-control-lg border-left-0" placeholder="เเผนก" name="department">
                                     </div>
                                 </div>
-                                {{-- <div class="form-group">
+                                <div class="form-group">
                                     <label>เบอร์โทรติดต่อ</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
@@ -107,8 +107,8 @@
                                         </div>
                                         <input type="text" class="form-control form-control-lg border-left-0" placeholder="เบอร์โทรติดต่อ" name="phone">
                                     </div>
-                                </div> --}}
-                                <div class="form-group">
+                                </div>
+                                {{-- <div class="form-group">
                                     <label>เบอร์โทรติดต่อ</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend bg-transparent">
@@ -142,7 +142,7 @@
                                             input.value = phone.substring(0, 3) + '-' + phone.substring(3, 10);
                                         }
                                     }
-                                </script>
+                                </script> --}}
                                 
 
                                 <!-- User Type Selection -->

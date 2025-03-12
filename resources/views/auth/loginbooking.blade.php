@@ -85,9 +85,9 @@
                                             pattern = "(?=.*\d)(?=.* [a-z])(?=.* [A-Z])(?=.*?[0-9])(?=.*?[~`!@#$%\^&*()\-_=+[\]{};:\x27.,\x22\\|/?><]).{4,}">
                                     </div>
                                 </div>
-                                <div class="font-weight-light" style="text-align: left;">
+                                {{-- <div class="font-weight-light" style="text-align: left;">
                                     ลืมรหัสผ่าน? <a href="/forgotpassword" class="text-primary">เปลี่ยนรหัสผ่าน</a>
-                                </div>
+                                </div> --}}
                                 <div class="justify-content-between align-items-center">
                                     <div class="form-check">
                                         <label class="form-check-label text-muted">

@@ -20,9 +20,9 @@ class isAdmin
         if(Auth::user() && Auth::user()->userTypeId == 1){
             return $next($request);
         }elseif(Auth::user() && Auth::user()->userTypeId == 2){
-            return redurect('/home');
+            return redirect('/home');
         }
-
+        $roomId = $request->route('roomId');
         return redirect('/login/'.$roomId)->with('message','กรุณาเข้าสู่ระบบ');
     }
 }
