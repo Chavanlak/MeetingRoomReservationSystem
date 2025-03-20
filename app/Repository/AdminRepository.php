@@ -208,18 +208,44 @@ public static function countAllUserbyAdmin($limit=6)
     // }
     public static function getSearchUserNamebyAdmin($infomation, $limit=6, $offset=1){
         $k = ((int)$offset-1)*(int)$limit;
-       return User::select('user.username','user.phone')
+       return User::select('user.userId','user.username','user.phone')
         ->where('user.username','like',"%{$infomation}%")
-        ->where('user.phone','like',"%{$infomation}%")
+        ->orWhere('user.phone','like',"%{$infomation}%")
+        ->orderBy('user.userId','desc')
+   
         ->limit($limit)
         ->offset($k)
         ->get();
+    // $k = ((int)$offset - 1) * (int)$limit;
+
+    // return User::select('userId', 'username', 'phone')
+    //     ->where(function ($query) use ($infomation) {
+    //         $query->where('username', 'like', "%{$infomation}%")
+    //               ->orWhere('phone', 'like', "%{$infomation}%");
+    //     })
+    //     ->orderBy('userId', 'desc') // ตรวจสอบให้แน่ใจว่า orderBy อยู่ตรงนี้
+    //     ->limit($limit)
+    //     ->offset($k)
+    //     ->get();
     }
-    public static function countSearchUserNamebyAdmin($infomation, $limit){
-        $count = User::where('user.username', 'like', "%{$infomation}%")->count();
+    public static function countSearchUserNamebyAdmin($userId,$infomation, $limit){
+        $count = User::where('user.username', 'like', "%{$infomation}%")
+        ->where('user.phone','like',"%{$infomation}%")
+        // ->orderBy('user.userId','desc')
+        ->orWhere('user.userId','=',$userId)
+        ->get()
+        ->count();
 
         // Return the ceiling of count / limit to get the total number of pages
         return (int)ceil($count / $limit);
+    //     $count = User::where(function ($query) use ($infomation, $userId) {
+    //         $query->where('username', 'like', "%{$infomation}%")
+    //               ->orWhere('phone', 'like', "%{$infomation}%")
+    //               ->orWhere('userId', '=', $userId);
+    //     })
+    //     ->count(); // Count directly without fetching all records
+
+    // return (int)ceil($count / $limit); // Calculate total pages
     }
     public static function countUserBookingbyAdmin($userId, $limit){
         $count =  $bookingDat = Booking::join('user','booking.userId','=','user.userId')

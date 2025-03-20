@@ -383,15 +383,17 @@ public static function settingdashbordLimit($limit, $offset)
        
         $offset = 1;
         $limit = $req->limit;
+        $userId = $req->userId;
         $username = $req->username;
-        $phone = $req->phone;
-        $userList = AdminRepository::getSearchUserNamebyAdmin($username,$limit,$offset,$phone);
-        $count = AdminRepository::countUserBookingbyAdmin($username,$limit);
+        // $phone = $req->phone;
+        // $userList = AdminRepository::getSearchUserNamebyAdmin($username,$limit,$offset,$phone);
+        $userList = AdminRepository::getSearchUserNamebyAdmin($username,$limit,$offset);
+        $count = AdminRepository::countSearchUserNamebyAdmin($userId,$username,$limit);
         $stringPage = "/searchUserByAdmin/" . $limit . "/";
         return view('dashbord/settingdashbord',compact('userList','offset','limit','stringPage','count'));
     }
 
-    public static function searchUserNextPageByAdmin($username, $limit, $offset)
+    public static function searchUserNextPageByAdmin($username, $userId,$limit, $offset)
     {
         // Fetch next page data
         $userList = AdminRepository::getSearchUserNamebyAdmin($username, $limit, $offset);
@@ -400,7 +402,7 @@ public static function settingdashbordLimit($limit, $offset)
         $stringPage =  "/searchUserByAdmin/" . $username . "/" . $limit . "/";
 
         // Get total pages count
-        $count = AdminRepository::countSearchUserNamebyAdmin($username, $limit);
+        $count = AdminRepository::countSearchUserNamebyAdmin($userId,$username, $limit);
 
         return view('dashbord/settingdashbord', compact('userList', 'offset', 'limit', 'stringPage', 'count'));
     }
