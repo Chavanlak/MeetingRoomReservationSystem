@@ -46,10 +46,14 @@
                                         <th style="text-align: center">ลำดับ</th>
                                         <th style="text-align: center">หัวข้อการประชุม</th>
                                         <th style="text-align: center">วันที่ใช้งาน</th>
-                                        <th style="text-align: center">เวลาเริ่ม</th>
-                                        <th style="text-align: center">เวลาสิ้นสุด</th>
+                                        <th style="text-align: center">จองเวลา</th>
+                                        {{-- <th style="text-align: center">เวลาเริ่ม</th>
+                                        <th style="text-align: center">เวลาสิ้นสุด</th> --}}
                                         <th style="text-align: center">ผู้จอง</th>
                                         <th style="text-align: center">ห้อง</th>
+                                        <th style="text-align: center">วันที่บันทึก</th>
+                                        <th style="text-align: center">เวลาที่บันทึก</th>
+                                   
                                         <th colspan="2" style="text-align: center">เมนู</th>
                                     </tr>
                                 </thead>
@@ -62,11 +66,22 @@
                                             <td style="text-align: center">
                                                 {{ $loop->iteration + ((int) $offset - 1) * (int) $limit }}</td>
                                             <td style="text-align: center">{{ $booking->bookingAgenda }}</td>
-                                            <td style="text-align: center">{{ $booking->bookingDate }}</td>
-                                            <td style="text-align: center">{{ $booking->bookingTimeStart }}</td>
-                                            <td style="text-align: center">{{ $booking->bookingTimeFinish }}</td>
+                                            <td style="text-align: center">
+                                                {{ $booking->bookingDate ? \Carbon\Carbon::parse($booking->bookingDate)->format('d/m/Y') : 'ไม่มีข้อมูล' }}
+                                            </td>
+                                            {{-- <td style="text-align: center">{{ $booking->bookingTimeStart }}</td>
+                                            <td style="text-align: center">{{ $booking->bookingTimeFinish }}</td> --}}
+                                            <td style="text-align: center">
+                                                {{ \Carbon\Carbon::parse($booking->bookingTimeStart)->format('H.i') }}-
+                                                {{ \Carbon\Carbon::parse($booking->bookingTimeFinish)->format('H.i') }}
+                                            </td>
                                             <td style="text-align: center">{{ $booking->userbookingName }}</td>
                                             <td style="text-align: center">{{ $booking->roomName }}</td>
+                                             <td style="text-align: center">
+                                                {{ $booking->date ? \Carbon\Carbon::parse($booking->date)->format('d/m/Y') : 'ไม่มีข้อมูล' }}
+                                            </td>
+                                            {{-- <td style="text-align: center">{{ $booking->date }}</td> --}}
+                                            <td style="text-align: center">{{ $booking->bookingTimes }}</td>
                                             <td style="text-align: center;">
                                                 <a href="{{ route('delete', $booking->bookingId) }}" class="btn btn-danger"
                                                     {{-- style="margin-right: 30px"  --}}

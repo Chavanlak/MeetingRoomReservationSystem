@@ -47,10 +47,39 @@ class AdminController extends Controller
         return view("dashbord/admintest", compact("bookingList"));
     }
     public static function settingdashbord()
-    {
-        $userList = AdminRepository::getAllUers();
-        return view("dashbord/settingdashbord", compact("userList"));
-    }
+{
+    $offset = 1;
+    $limit = 6;
+    $userList = AdminRepository::getAllUers($limit, $offset);
+    $count = AdminRepository::countAllUserbyAdmin($limit); // Ensure this returns the correct total count
+    $stringPage = "/settingdashbordLimit/" . $limit . "/"; // This can be used for pagination URLs
+    return view("dashbord/settingdashbord", compact("userList", "offset", "limit", "count", "stringPage"));
+}
+
+public static function settingdashbordLimit($limit, $offset)
+{
+    $userList = AdminRepository::getAllUers($limit, $offset);
+    $count = AdminRepository::countAllUserbyAdmin($limit); // Get the total user count
+    $stringPage = "/settingdashbordLimit/" . $limit . "/"; // Pagination URL string
+    return view("dashbord/settingdashbord", compact("userList", "offset", "limit", "count", "stringPage"));
+}
+
+    // public static function settingdashbord()
+    // {
+    //     $offset = 1;
+    //     $limit = 5;
+    //     $userList = AdminRepository::getAllUers($limit,$offset);
+    //     $count = AdminRepository::countAllUserbyAdmin($limit); // Ensure this returns the correct total count
+    //     $stringPage = "/settingdashbordLimit/" . $limit . "/"; // This can be used for pagination URLs
+    //     return view("dashbord/settingdashbord", compact("userList","offset","limit"));
+    // }
+    // public static function settingdashbordLimit($limit,$offset)
+    // {
+    //     $userList = AdminRepository::getAllUers($limit,$offset);
+    //     $count = AdminRepository::countAllUserbyAdmin($limit);
+    //     $stringPage = "/settingdashbordLimit/" . $limit . "/";
+    //     return view("dashbord/settingdashbord", compact("userList","offset","limit","stringPage","count"));
+    // }
     public function showPostSetting($userId)
     {
         $user = User::where('userId', $userId)->first();
@@ -323,7 +352,58 @@ class AdminController extends Controller
         // $count = AdminRepository::countSearchByInformation(Auth::user()->userId,$roomName, $limit);
         return view('dashbord/admindashbord', compact('bookingList', 'offset', 'limit', 'stringPage', 'count'));
     }
-    public static function getBookigserchbyAdmin(Request $req) {}
+    // public static function searchUserByAdmin(Request $req)
+    // {
+       
+    //     $offset = 1;
+    //     $limit = $req->limit;
+    //     $username = $req->username;
+    //     $phone = $req->phone;
+    //     $userList = AdminRepository::getSearchUserNamebyAdmin($username,$limit,$offset);
+    //     $count = AdminRepository::countUserBookingbyAdmin($username,$limit);
+    //     $stringPage = "/searchUserByAdmin/" . $limit . "/";
+    //     return view('dashbord/settingdashbord',compact('userList','offset','limit','stringPage','count'));
+    // }
+
+    // public static function searchUserNextPageByAdmin($username, $limit, $offset)
+    // {
+    //     // Fetch next page data
+    //     $userList = AdminRepository::getSearchUserNamebyAdmin($username, $limit, $offset);
+
+    //     // Generate pagination URL
+    //     $stringPage =  "/searchUserByAdmin/" . $username . "/" . $limit . "/";
+
+    //     // Get total pages count
+    //     $count = AdminRepository::countSearchUserNamebyAdmin($username, $limit);
+
+    //     return view('dashbord/settingdashbord', compact('userList', 'offset', 'limit', 'stringPage', 'count'));
+    // }
+    public static function searchUserByAdmin(Request $req)
+    {
+       
+        $offset = 1;
+        $limit = $req->limit;
+        $username = $req->username;
+        $phone = $req->phone;
+        $userList = AdminRepository::getSearchUserNamebyAdmin($username,$limit,$offset,$phone);
+        $count = AdminRepository::countUserBookingbyAdmin($username,$limit);
+        $stringPage = "/searchUserByAdmin/" . $limit . "/";
+        return view('dashbord/settingdashbord',compact('userList','offset','limit','stringPage','count'));
+    }
+
+    public static function searchUserNextPageByAdmin($username, $limit, $offset)
+    {
+        // Fetch next page data
+        $userList = AdminRepository::getSearchUserNamebyAdmin($username, $limit, $offset);
+
+        // Generate pagination URL
+        $stringPage =  "/searchUserByAdmin/" . $username . "/" . $limit . "/";
+
+        // Get total pages count
+        $count = AdminRepository::countSearchUserNamebyAdmin($username, $limit);
+
+        return view('dashbord/settingdashbord', compact('userList', 'offset', 'limit', 'stringPage', 'count'));
+    }
     public static function registerByAdmin()
     {
         // render register from

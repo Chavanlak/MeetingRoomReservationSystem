@@ -11,6 +11,16 @@ class Booking extends Model
     protected $table = 'booking';
     public $timestamps = false;
     protected $primaryKey = 'bookingId';
+    protected $fillable = [
+        'bookingAgenda',
+        'bookingDate',
+        'bookingTimeStart',
+        'bookingTimeFinish',
+        'date', // ✅ เพิ่มตรงนี้
+        'bookingTimes',
+        'userId',
+        'roomId'
+    ];
 
 
     public function memberBooking(): HasMany{

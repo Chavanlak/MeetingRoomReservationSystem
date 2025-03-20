@@ -34,12 +34,15 @@
                                         <th style="text-align: center">ลำดับ</th>
                                         <th style="text-align: center">หัวข้อการประชุม</th>
                                         <th style="text-align: center">วันที่ใช้งาน</th>
-                                        <th style="text-align: center">เวลา</th>
-                                        <th style="text-align: center">เวลาเริ่ม</th>
-                                        <th style="text-align: center">เวลาสิ้นสุด</th>
+                                   
+                                        {{-- <th style="text-align: center">เวลาเริ่ม</th>
+                                        <th style="text-align: center">เวลาสิ้นสุด</th> --}}
+                                        <th style="text-align: center">จองเวลา</th>
                                         <th style="text-align: center">ผู้จอง</th>
                                         <th style="text-align: center">ชื่อห้อง</th>
-                                        <th style="text-align: center">วันที่ปัจจุบัน</th>
+                                        <th style="text-align: center">วันที่บันทึก</th>
+                                        <th style="text-align: center">เวลาที่บันทึก</th>
+                                      
                                         <th colspan="2" style="text-align: center">เมนู</th>
                                     </tr>
                                 </thead>
@@ -53,18 +56,27 @@
                                             <td style="text-align: center">
                                                 {{ $booking->bookingDate ? \Carbon\Carbon::parse($booking->bookingDate)->format('d/m/Y') : 'ไม่มีข้อมูล' }}
                                             </td>
-                                            <td style="text-align: center">{{ $booking->bookingTimes }}</td>
+                                            <td style="text-align: center">
+                                                {{ \Carbon\Carbon::parse($booking->bookingTimeStart)->format('H.i') }}-
+                                                {{ \Carbon\Carbon::parse($booking->bookingTimeFinish)->format('H.i') }}
+                                            </td>
+                                      
                                             {{-- <td style="text-align: center">{{$booking->bookingTimes ?? 'N/A'}}</td> --}}
-                                            <td style="text-align: center">{{ $booking->bookingTimeStart }}</td>
-                                            <td style="text-align: center">{{ $booking->bookingTimeFinish }}</td>
+                                            {{-- <td style="text-align: center">{{ $booking->bookingTimeStart }}</td>
+                                            <td style="text-align: center">{{ $booking->bookingTimeFinish }}</td> --}}
+                                         
                                             <td style="text-align: center">{{ $booking->userbookingName }}</td>
                                             <td style="text-align: center">{{ $booking->roomName }}</td>
                                             <td style="text-align: center">
                                                 {{ $booking->date ? \Carbon\Carbon::parse($booking->date)->format('d/m/Y') : 'ไม่มีข้อมูล' }}
                                             </td>
+                                            {{-- <td style="text-align: center">{{ $booking->date }}</td> --}}
+                                            <td style="text-align: center">{{ $booking->bookingTimes }}</td>
+                                           
+                                         
                                             {{-- <td style="text-align: center">{{ $booking->date ?? 'N/A' }}</td> --}}
                                             {{-- <td style="text-align: center">{{$booking->date}}</td> --}}
-
+                                       
                                             {{-- <td>{{\Carbon\Carbon::now()}}</td> --}}
                                             {{-- <td>{{\Carbon\Carbon::parse($booking->bookingDate." ".$booking->bookingTimeStart)->lt(\Carbon\Carbon::now())}}</td> --}}
                                             @if (\Carbon\Carbon::parse($booking->bookingDate . ' ' . $booking->bookingTimeStart)->lt(\Carbon\Carbon::now()))

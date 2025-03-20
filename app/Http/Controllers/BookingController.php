@@ -34,8 +34,10 @@ class BookingController extends Controller
         $bookingTimeFinish = Carbon::parse($req->bookingTimeFinish);
         $userId = $req->userId;
         $roomId = $req->roomId;
+
         $dateNow = Carbon::now();
         $dateSelect = Carbon::parse($bookingDate." ".$bookingTimeStart->format('H:i:s'));
+  
         $bookingDurationMinutes = $bookingTimeFinish->diffInMinutes($bookingTimeStart);
 
         if ($dateSelect->lt($dateNow)) {
@@ -58,6 +60,7 @@ class BookingController extends Controller
         $result = BookingRepository::addBooking(
             $bookingAgenda,
             $bookingDate,
+            
             // $bookingTimes,
             $bookingTimeStart->format('H:i:s'),
             $bookingTimeFinish->format('H:i:s'),
