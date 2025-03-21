@@ -171,9 +171,16 @@
                                                         {{-- <p>ผู้จอง : {{ $bb->firstName . ' ' . $bb->lastName }}</p> --}}
                                                         {{-- <p>ผู้จอง : {{ $bb->department }}&nbsp;&nbsp;&nbsp;&nbsp;{{ $bb->phone}}</p> --}}
 
-                                                        <p>ผู้จอง :
+                                                        {{-- <p>ผู้จอง :
                                                             {{ $bb->department }}&nbsp;&nbsp;&nbsp;&nbsp;{{ $bb->phone }}
+                                                        </p> --}}
+                                                        <p>ผู้จอง :
+                                                            {{ $bb->department }}
                                                         </p>
+                                                        <p>เบอร์โทรติดต่อ :
+                                                            {{ $bb->phone }}
+                                                        </p>
+
 
                                                     </div>
                                                 </div>

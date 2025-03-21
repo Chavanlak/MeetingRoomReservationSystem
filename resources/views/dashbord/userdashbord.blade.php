@@ -15,7 +15,7 @@
                         <div>
                             <form method="post" action="/user/search" class="input-group form-control-sm">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="text" placeholder="ค้นหาด้วยชื่อห้อง..." name="roomName"
+                                <input type="text" placeholder="ค้นหาด้วยชื่อห้องเเละหัวข้อ" name="roomName"
                                     style="background-color: rgba(245, 245, 245, 0.39)">
                                 <input type="hidden" value="{{ $offset }}" name="offset">
                                 <input type="hidden" value="{{ $limit }}" name="limit">
@@ -39,6 +39,7 @@
                                         <th style="text-align: center">เวลาสิ้นสุด</th> --}}
                                         <th style="text-align: center">จองเวลา</th>
                                         <th style="text-align: center">ผู้จอง</th>
+                                        <th style="text-align: center">เบอร์โทรติดต่อ</th>
                                         <th style="text-align: center">ชื่อห้อง</th>
                                         <th style="text-align: center">วันที่บันทึก</th>
                                         <th style="text-align: center">เวลาที่บันทึก</th>
@@ -65,7 +66,9 @@
                                             {{-- <td style="text-align: center">{{ $booking->bookingTimeStart }}</td>
                                             <td style="text-align: center">{{ $booking->bookingTimeFinish }}</td> --}}
                                          
-                                            <td style="text-align: center">{{ $booking->userbookingName }}</td>
+                                            {{-- <td style="text-align: center">{{ $booking->userbookingName }}</td> --}}
+                                            <td style="text-align: center">{{ $booking->department}}</td>
+                                            <td style="text-align: center">{{ $booking->phone}}</td>
                                             <td style="text-align: center">{{ $booking->roomName }}</td>
                                             <td style="text-align: center">
                                                 {{ $booking->date ? \Carbon\Carbon::parse($booking->date)->format('d/m/Y') : 'ไม่มีข้อมูล' }}

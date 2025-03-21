@@ -34,7 +34,7 @@
                                 <label for="time">เวลาที่ใช้ห้อง</label>
                                 <div class="row" id="time">
                                     <div class="col-sm-6">
-                                        <label for="timestart" class="text-danger">เวลาเริ่ม{{ session('message') }}</label>
+                                        <label for="timestart" class="text-danger">เวลาเริ่ม{{ session('message') }} </label>
                                         <input type="time" class="form-control" id="timestart" name="bookingTimeStart"
                                             required>
                                     </div>
@@ -100,8 +100,9 @@
                                 <th style="text-align: center">เวลาการจอง</th>
                             
                                 <th style="text-align: center">ผู้จอง</th>
-                                <th style="text-align: center">เวลาปัจจุบัน</th>
-                                <th style="text-align: center">วันที่ปัจจุบัน</th>
+                                <th style="text-align: center">เบอร์โทรติดต่อ</th>
+                                <th style="text-align: center">เวลาที่บันทึก</th>
+                                <th style="text-align: center">วันที่บันทึก</th>
                                 {{-- <th style="text-align: center">เบอร์โทรติดต่อ</th> --}}
                                 {{-- <th>ลบข้อมูลการจอง</th>
                                 <th>เเก้ไขข้อมูลการจอง</th> --}}
@@ -129,9 +130,13 @@
                                 </td> --}}
                                    
                                     {{-- <td style="text-align: center">{{$booking->user->department."   ".$booking->user->phone}}</td> --}}
-                                    <td style="text-align: center">
+                                    {{-- <td style="text-align: center">
                                         {{ $booking->user->department }}&nbsp;&nbsp;&nbsp;{{ $booking->user->phone }}
+                                    </td> --}}
+                                    <td style="text-align: center">
+                                        {{ $booking->user->department}}
                                     </td>
+                                    <td style="text-align: center">{{ $booking->user->phone}}</td>
                                     <td style="text-align: center">{{ $booking->bookingTimes ?? 'N/A' }}</td>
                                     <td style="text-align: center">
                                         {{ $booking->date ? \Carbon\Carbon::parse($booking->bookingDate)->format('d/m/Y') : 'ไม่มีข้อมูล' }}
@@ -179,3 +184,32 @@
     </div>
     </div>
 @endsection
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const timeStartInput = document.getElementById("timestart");
+        const timeEndInput = document.getElementById("timeend");
+
+        timeStartInput.addEventListener("change", function () {
+            if (timeStartInput.value) {
+                let startTime = timeStartInput.value.split(":");
+                let hours = parseInt(startTime[0]);
+                let minutes = parseInt(startTime[1]);
+
+                // เพิ่ม 1 ชั่วโมง
+                hours += 1;
+
+                // กรณีชั่วโมงเกิน 23 ให้กลับไปเป็น 00 (เช่นเลือก 23:30 -> 00:30)
+                if (hours >= 24) {
+                    hours = 0;
+                }
+
+                // แปลงให้เป็นรูปแบบ 2 หลัก เช่น 09:00
+                let formattedHours = hours.toString().padStart(2, "0");
+                let formattedMinutes = minutes.toString().padStart(2, "0");
+
+                // ตั้งค่าเวลาเสร็จสิ้นอัตโนมัติ
+                timeEndInput.value = `${formattedHours}:${formattedMinutes}`;
+            }
+        });
+    });
+</script>

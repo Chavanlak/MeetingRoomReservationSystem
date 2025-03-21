@@ -56,3 +56,32 @@
     </div>
 </div>
 @endsection
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const timeStartInput = document.getElementById("timestart");
+        const timeEndInput = document.getElementById("timeend");
+
+        timeStartInput.addEventListener("change", function () {
+            if (timeStartInput.value) {
+                let startTime = timeStartInput.value.split(":");
+                let hours = parseInt(startTime[0]);
+                let minutes = parseInt(startTime[1]);
+
+                // เพิ่ม 1 ชั่วโมง
+                hours += 1;
+
+                // กรณีชั่วโมงเกิน 23 ให้กลับไปเป็น 00 (เช่นเลือก 23:30 -> 00:30)
+                if (hours >= 24) {
+                    hours = 0;
+                }
+
+                // แปลงให้เป็นรูปแบบ 2 หลัก เช่น 09:00
+                let formattedHours = hours.toString().padStart(2, "0");
+                let formattedMinutes = minutes.toString().padStart(2, "0");
+
+                // ตั้งค่าเวลาเสร็จสิ้นอัตโนมัติ
+                timeEndInput.value = `${formattedHours}:${formattedMinutes}`;
+            }
+        });
+    });
+</script>

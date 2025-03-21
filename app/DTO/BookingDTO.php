@@ -4,10 +4,11 @@ namespace App\DTO;
 
 class BookingDTO{
     public $bookingId, $bookingAgenda, $bookingDate, $bookingTimeStart, $bookingTimeFinish,$bookingTimes,$date;
-    public $userbookingName;
+    // public $userbookingName,$department,$phone;
+    public $department,$phone;
     public $roomName;
-
-    public function __construct($bookingId, $bookingAgenda, $bookingDate,$bookingTimes, $bookingTimeStart, $bookingTimeFinish, $date,$userbookingName, $roomName) {
+    public function __construct($bookingId, $bookingAgenda, $bookingDate,$bookingTimes, $bookingTimeStart, $bookingTimeFinish, $date, $department,$phone,$roomName) {
+    // public function __construct($bookingId, $bookingAgenda, $bookingDate,$bookingTimes, $bookingTimeStart, $bookingTimeFinish, $date,$userbookingName, $department,$phone,$roomName) {
         // public function __construct($bookingId, $bookingAgenda, $bookingDate,$bookingTimes, $bookingTimeStart, $bookingTimeFinish, $userbookingName, $roomName) {
         $this->bookingId = $bookingId;
         $this->bookingAgenda = $bookingAgenda;
@@ -16,7 +17,9 @@ class BookingDTO{
         $this->bookingTimeStart = $bookingTimeStart;
         $this->bookingTimeFinish = $bookingTimeFinish;
         $this->date = $date;
-        $this->userbookingName = $userbookingName;
+        // $this->userbookingName = $userbookingName;
+        $this->$department = $department;
+        $this->$phone = $phone;
         $this->roomName = $roomName;
     }
 

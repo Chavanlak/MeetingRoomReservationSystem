@@ -6,12 +6,12 @@
             <div class="card">
                 <div class="card-header" style="background-color: white">
                     <div class="d-flex justify-content-between">
-                        <p>ตั้งค่า</p>
+                        <p >ตั้งค่า</p>
 
                     </div>
                 </div>
                 <div class="card-body">
-                    <div>
+                    <div class="text-secondary">
                         <p>การตั้งค่ารหัสผ่าน</p>
                     </div>
                     <form action="/updatepassword" id="" method="POST">

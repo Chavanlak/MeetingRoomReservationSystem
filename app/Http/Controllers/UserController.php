@@ -45,6 +45,7 @@ class UserController extends Controller
         $count = BookingRepository::countUserBookingSearch(Auth::user()->userId,$roomName, $limit);
         return view('dashbord/userdashbord',compact('bookingList','offset','limit', 'stringPage','count'));
     }
+    
 
     public static function searchnextpage($roomName, $limit, $offset){
         $bookingList = BookingRepository::getUserBookingSearch(Auth::user()->userId,$roomName,$limit, $offset);

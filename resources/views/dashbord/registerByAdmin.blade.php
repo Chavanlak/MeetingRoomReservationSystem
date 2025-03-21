@@ -27,9 +27,10 @@
                             <h4>ลงทะเบียนผู้ใช้งานใหม่</h4>
                             <!-- Username Field -->
                             <div class="form-group">
-                                <label>รหัสพนักงาน</label>
+                                <label>รหัสพนักงาน <span class="text-danger">*</span></label>
+                                {{-- <label>รหัสพนักงาน</label> --}}
                                 <input type="text" class="form-control form-control-lg" placeholder="รหัสพนักงาน"
-                                    name="username" value="{{ old('username') }}">
+                                    name="username" value="{{ old('username') }}" required>
                                 @error('username')
                                     <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -37,7 +38,7 @@
 
                             <!-- Password Field -->
                             <div class="form-group">
-                                <label>รหัสผ่าน</label>
+                                <label>รหัสผ่าน<span class="text-danger">*</span></label>
                                 <input type="password" class="form-control form-control-lg" placeholder="รหัสผ่าน"
                                     name="password" minlength="6" required>
                                 @error('password')
@@ -46,7 +47,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>ยืนยันรหัสผ่าน</label>
+                                <label>ยืนยันรหัสผ่าน<span class="text-danger">*</span></label>
                                 <input type="password" class="form-control form-control-lg" placeholder="ยืนยันรหัสผ่าน"
                                     name="password_confirmation" minlength="6" required>
                             </div>
@@ -63,17 +64,17 @@
                             @endif
                             <!-- Department Field -->
                             <div class="form-group">
-                                <label>เเผนก</label>
+                                <label>เเผนก<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-lg" placeholder="เเผนก"
-                                    name="department" value="{{ old('department') }}">
+                                    name="department" value="{{ old('department') }}" required>
                                 {{-- @error('phone') <small class="text-danger">{{ $message }}</small> @enderror --}}
                             </div>
 
                             <!-- Phone Field -->
                             <div class="form-group">
-                                <label>เบอร์โทรติดต่อ</label>
+                                <label>เบอร์โทรติดต่อ<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-lg" placeholder="เบอร์โทรติดต่อ"
-                                    name="phone" value="{{ old('phone') }}">
+                                    name="phone" value="{{ old('phone') }}" required>
                                 {{-- @error('phone') <small class="text-danger">{{ $message }}</small> @enderror --}}
                             </div>
 

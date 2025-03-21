@@ -11,7 +11,7 @@ use App\Models\User;
 
 class UserRepository{
 
-    public static function save( $username,$password,  $userTypeId, $department, $phone,){
+    public static function save( $username,$password,  $userTypeId, $department, $phone){
         $user = new User();
         $user->username = $username;
         $user->password = Hash::make($password);
