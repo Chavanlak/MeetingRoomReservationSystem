@@ -23,7 +23,7 @@
                                 {{-- you must to connected with route path Route::post('/searchadmin',[AdminController::class,'searchbookingbyAdmin']); or ou can write in front of thispath /admin/searchadmin --}}
                                 {{-- <form method="post" action=" /admin/searchadmin" class="input-group form-control-sm"> --}}
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="text" placeholder="ค้นหา..." name="roomName"
+                                <input type="text" placeholder="ค้นหาด้วยชื่อห้อง..." name="roomName"
                                     style="background-color: rgba(245, 245, 245, 0.39)">
                                 <input type="hidden" value="{{ $offset }}" name="offset">
                                 <input type="hidden" value="{{ $limit }}" name="limit">

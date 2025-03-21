@@ -170,7 +170,7 @@ public static function countAllUserbyAdmin($limit=6)
     }
     public static function getSearchByInformation($infomation, $limit=5, $offset=1){
         $k = ((int)$offset-1)*(int)$limit;
-        $bookingDat = Booking::select('booking.bookingId', 'booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimeStart', 'booking.bookingTimeFinish', DB::raw('concat(user.username," ",user.phone) as userbookingName'), 'room.roomName')
+        $bookingDat = Booking::select('booking.bookingId', 'booking.bookingAgenda', 'booking.bookingDate', 'booking.bookingTimes','booking.date','booking.bookingTimeStart', 'booking.bookingTimeFinish', DB::raw('concat(user.username," ",user.phone) as userbookingName'), 'room.roomName')
         ->join('user','booking.userId','=','user.userId')
         ->join('room', 'booking.roomId','=','room.roomId')
         ->where('user.username','like',"%{$infomation}%")

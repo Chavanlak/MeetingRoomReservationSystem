@@ -15,7 +15,7 @@
                         <div>
                             <form method="post" action="/user/search" class="input-group form-control-sm">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <input type="text" placeholder="ค้นหาด้วยชื่อห้อง" name="roomName"
+                                <input type="text" placeholder="ค้นหาด้วยชื่อห้อง..." name="roomName"
                                     style="background-color: rgba(245, 245, 245, 0.39)">
                                 <input type="hidden" value="{{ $offset }}" name="offset">
                                 <input type="hidden" value="{{ $limit }}" name="limit">
